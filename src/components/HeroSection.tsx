@@ -1,6 +1,6 @@
 import { useI18n } from "@/lib/i18n";
 import type { Language } from "@/lib/i18n";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg-second.jpg";
 import { useState } from "react";
 import HelpPopup from "@/components/HelpPopup";
 
@@ -19,7 +19,7 @@ const HeroSection = () => {
             alt="Driver with phone"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />
         </div>
       </div>
 
@@ -43,9 +43,8 @@ const HeroSection = () => {
               {i > 0 && <span>/</span>}
               <button
                 onClick={() => setLang(l)}
-                className={`transition-colors hover:text-primary ${
-                  lang === l ? "font-semibold text-foreground" : "text-foreground/60"
-                }`}
+                className={`transition-colors hover:text-primary ${lang === l ? "font-semibold text-foreground" : "text-foreground/60"
+                  }`}
               >
                 {l === "en" ? "En" : l === "ru" ? "Ru" : "Ro"}
               </button>
@@ -54,8 +53,8 @@ const HeroSection = () => {
         </div>
       </nav>
 
-      <div className="absolute left-1/2 top-20 z-20 -translate-x-1/2 md:left-[40%]">
-        <div className="rounded-[2rem] border-2 border-dashed border-foreground/40 px-8 py-5 text-center">
+      <div className="absolute left-1/2 xl:top-[250px] z-20 -translate-x-1/2 md:left-[40%]">
+        <div className="rounded-[2rem] border-2 border-dashed border-foreground/40 px-8 py-5 max-sm:px-2 max-sm:py-2 text-center">
           {t("hero.promo.line1").split("\n").map((line, i) => (
             <p key={i} className="text-sm text-foreground/80">{line}</p>
           ))}
@@ -67,10 +66,10 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative z-10 flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
+      <div className="relative z-10 max-w-7xl m-auto flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
         <div className="mb-6">
           <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
-            iPark<span className="text-primary">U</span>
+            Iparkin<span className="text-primary">G</span>
           </h2>
         </div>
 
@@ -86,7 +85,7 @@ const HeroSection = () => {
           ))}
         </h1>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <div className="mt-10 flex md:flex-row flex-col items-center gap-4">
           <span className="text-sm text-foreground/70">{t("hero.download")}</span>
           <a
             href="#"

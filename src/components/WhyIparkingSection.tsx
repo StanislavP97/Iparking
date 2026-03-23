@@ -12,24 +12,23 @@ const benefits: { icon: LucideIcon; titleKey: TranslationKey; textKey: Translati
   { icon: Smile, titleKey: "why.6.title", textKey: "why.6.text" },
 ];
 
-const WhyIParkUSection = () => {
+const WhyIparkingSection = () => {
   const { t } = useI18n();
 
   return (
-    <section className="bg-background px-8 py-20 md:px-16 lg:px-24">
-      <h2 className="mb-16 text-center text-2xl font-bold md:text-4xl">{t("why.title")}</h2>
-
+    <section className="bg-white px-8 py-20 md:px-16 lg:px-24">
+      <h2 className="mb-16 text-center text-2xl text-black font-bold md:text-4xl">{t("why.title")}</h2>
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="group rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(76,217,100,0.08)]"
+            className="group rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(76,217,100,0.08)]"
           >
             <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary">
               <benefit.icon className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="mb-3 text-lg font-bold">{t(benefit.titleKey)}</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">{t(benefit.textKey)}</p>
+            <h3 className="mb-3 text-black text-lg font-bold">{t(benefit.titleKey)}</h3>
+            <p className="text-sm text-black leading-relaxed text-muted-foreground">{t(benefit.textKey)}</p>
           </div>
         ))}
       </div>
@@ -37,4 +36,4 @@ const WhyIParkUSection = () => {
   );
 };
 
-export default WhyIParkUSection;
+export default WhyIparkingSection;

@@ -1,87 +1,161 @@
 import { useI18n } from "@/lib/i18n";
-import { Car, MapPin, Coins } from "lucide-react";
+import icon1 from '@/assets/icon_01.svg';
+import icon2 from '@/assets/icon_02.svg';
+import icon3 from '@/assets/icon_03.svg';
+import icon4 from '@/assets/icon_04.svg';
+import icon5 from '@/assets/icon_05.svg';
+import icon6 from '@/assets/icon_06.svg';
+import arrowSvg from '@/assets/arrow_long.svg';
 
 const HowItWorksSection = () => {
   const { t } = useI18n();
 
   return (
-    <section className="bg-background px-8 py-20 md:px-16 lg:px-24">
-      {/* Section header */}
+    <section className="bg-white py-40 overflow-hidden">
       <div className="mb-16 text-center">
-        <p className="mb-2 text-sm text-muted-foreground md:text-base">
-          {t("how.subtitle")}
-        </p>
-        <h2 className="text-2xl font-bold md:text-4xl">{t("how.title")}</h2>
+        <h2 className="text-2xl text-black font-bold md:text-4xl">{t("how.title")}</h2>
       </div>
 
-      {/* Finding a spot flow */}
-      <div className="mx-auto mb-20 max-w-5xl">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div className="relative rounded-2xl border border-border bg-card p-8 text-center">
-            <div className="mb-4 flex items-center justify-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">1</span>
-            </div>
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
-              <MapPin className="h-8 w-8 text-primary" />
-            </div>
-            <p className="text-sm text-foreground/80">{t("how.find.step1")}</p>
-            <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-2xl text-primary md:block">→</div>
-          </div>
+      <div className="mx-auto px-4 
+        min-[1200px]:max-w-[1140px] 
+        min-[1400px]:max-w-[1320px] 
+        min-[1600px]:max-w-[1400px]">
 
-          <div className="relative rounded-2xl border border-border bg-card p-8 text-center">
-            <div className="mb-4 flex items-center justify-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">2</span>
-            </div>
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
-              <Car className="h-8 w-8 text-primary" />
-            </div>
-            <p className="text-sm text-foreground/80">{t("how.find.step2")}</p>
-            <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-2xl text-primary md:block">→</div>
-          </div>
+        <div className="relative mb-16 hidden md:block h-10">
 
-          <div className="rounded-2xl border border-border bg-card p-8 text-center">
-            <div className="mb-4 flex items-center justify-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">3</span>
+          <div
+            className="absolute left-[-400px] right-[85.33%] top-1/2 -translate-y-1/2 h-3"
+            style={{
+              backgroundImage: `url(${arrowSvg})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right center',
+              backgroundSize: '100% auto'
+            }}
+          />
+
+          <div className="relative grid grid-cols-3 w-full h-full">
+
+            <div className="flex items-center justify-center relative">
+              <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-lg font-bold text-white shadow-md">
+                1
+              </div>
             </div>
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
-              <Coins className="h-8 w-8 text-primary" />
+
+            <div className="flex items-center justify-center relative">
+              <div
+                className="absolute left-[-50%] right-[50%] mr-6 h-3"
+                style={{
+                  backgroundImage: `url(${arrowSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: '100% auto'
+                }}
+              />
+              <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-lg font-bold text-white shadow-md">
+                2
+              </div>
             </div>
-            <p className="text-sm text-foreground/80">{t("how.find.step3")}</p>
+
+            <div className="flex items-center justify-center relative">
+              <div
+                className="absolute left-[-50%] right-[50%] mr-6 h-3"
+                style={{
+                  backgroundImage: `url(${arrowSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: '100% auto'
+                }}
+              />
+              <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-lg font-bold text-white shadow-md">
+                3
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div className="grid gap-12 md:grid-cols-3">
+          {[icon1, icon2, icon3].map((icon, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center">
+              <div className="flex h-[220px] w-full items-center justify-center">
+                <img src={icon} alt="" className="max-h-full object-contain" />
+              </div>
+              <p className="mt-8 max-w-[280px] text-md leading-relaxed text-black font-medium">
+                {t(`how.find.step${idx + 1}`)}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="mx-auto mb-20 flex max-w-xs items-center gap-4">
-        <div className="h-px flex-1 bg-border" />
-        <span className="text-lg font-semibold text-muted-foreground">{t("how.or")}</span>
-        <div className="h-px flex-1 bg-border" />
+      <div className="mx-auto my-20 flex max-w-xs items-center justify-center gap-4">
+        <span className="bg-black text-white px-6 py-1 rounded-full text-sm font-bold uppercase tracking-widest">{t("how.or")}</span>
       </div>
 
-      {/* Leaving a spot flow */}
-      <div className="mx-auto max-w-5xl">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div className="relative rounded-2xl border border-border bg-card p-8 text-center">
-            <div className="mb-4 flex items-center justify-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">1</span>
-            </div>
-            <p className="text-sm text-foreground/80">{t("how.leave.step1")}</p>
-            <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-2xl text-primary md:block">→</div>
-          </div>
+      <div className="mx-auto px-4 
+        min-[1200px]:max-w-[1140px] 
+        min-[1400px]:max-w-[1320px] 
+        min-[1600px]:max-w-[1400px]">
 
-          <div className="relative rounded-2xl border border-border bg-card p-8 text-center">
-            <div className="mb-4 flex items-center justify-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">2</span>
-            </div>
-            <p className="text-sm text-foreground/80">{t("how.leave.step2")}</p>
-            <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-2xl text-primary md:block">→</div>
-          </div>
 
-          <div className="rounded-2xl border border-border bg-card p-8 text-center">
-            <div className="mb-4 flex items-center justify-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">3</span>
+        <div className="grid gap-12 md:grid-cols-3">
+          {[icon4, icon5, icon6].map((icon, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center">
+              <div className="flex h-[220px] w-full items-center justify-center">
+                <img src={icon} alt="" className="max-h-full object-contain" />
+              </div>
+              <p className="mt-8 max-w-[280px] text-md leading-relaxed text-black font-medium">
+                {t(`how.leave.step${idx + 1}`)}
+              </p>
             </div>
-            <p className="text-sm text-foreground/80">{t("how.leave.step3")}</p>
+          ))}
+        </div>
+        <div className="relative mt-16 hidden md:block h-10">
+          <div className="relative grid grid-cols-3 w-full h-full">
+
+            <div className="flex items-center justify-center relative">
+              <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-lg font-bold text-white shadow-md">
+                1
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center relative">
+              <div
+                className="absolute left-[-50%] right-[50%] mr-6 h-3"
+                style={{
+                  backgroundImage: `url(${arrowSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: '100% auto'
+                }}
+              />
+              <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-lg font-bold text-white shadow-md">
+                2
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center relative">
+              <div
+                className="absolute left-[-50%] right-[50%] mr-6 h-3"
+                style={{
+                  backgroundImage: `url(${arrowSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: '100% auto'
+                }}
+              />
+              <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-lg font-bold text-white shadow-md">
+                3
+              </div>
+              <div
+                className="absolute left-[50%] right-[-100%] mr-6 h-3"
+                style={{
+                  backgroundImage: `url(${arrowSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: '100% auto'
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
