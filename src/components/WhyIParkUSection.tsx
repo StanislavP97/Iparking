@@ -1,44 +1,23 @@
+import { useI18n } from "@/lib/i18n";
 import { MousePointerClick, Wallet, Fuel, Clock, Leaf, Smile } from "lucide-react";
+import type { TranslationKey } from "@/lib/i18n";
+import type { LucideIcon } from "lucide-react";
 
-const benefits = [
-  {
-    icon: MousePointerClick,
-    title: "Легко и удобно",
-    description: "Получить место можно всего за 3 клика. Приложение ищет того, кто готов поменяться с тобой местами в нужном районе.",
-  },
-  {
-    icon: Wallet,
-    title: "Возможность заработать",
-    description: "Чем чаще ты пользуешься приложением и освобождаешь места, тем больше зарабатываешь.",
-  },
-  {
-    icon: Fuel,
-    title: "Экономия денег",
-    description: "Тебе больше не надо тратить бензин, делая несколько кругов по району. А также оставлять машину на местах, где ее смогут эвакуировать или оштрафовать.",
-  },
-  {
-    icon: Clock,
-    title: "Экономия времени",
-    description: "Теперь не надо долго искать парковку — достаточно связаться с помощью приложения с тем, кто уезжает.",
-  },
-  {
-    icon: Leaf,
-    title: "Забота об окружающей среде",
-    description: "Бережёшь бензин — бережёшь природу. И мы тебе в этом поможем с помощью приложения iParkU.",
-  },
-  {
-    icon: Smile,
-    title: "Всегда хорошее настроение",
-    description: "Ты не кружишь по району в поисках парковочного места, никуда не опаздываешь — ничто не испортит твое настроение!",
-  },
+const benefits: { icon: LucideIcon; titleKey: TranslationKey; textKey: TranslationKey }[] = [
+  { icon: MousePointerClick, titleKey: "why.1.title", textKey: "why.1.text" },
+  { icon: Wallet, titleKey: "why.2.title", textKey: "why.2.text" },
+  { icon: Fuel, titleKey: "why.3.title", textKey: "why.3.text" },
+  { icon: Clock, titleKey: "why.4.title", textKey: "why.4.text" },
+  { icon: Leaf, titleKey: "why.5.title", textKey: "why.5.text" },
+  { icon: Smile, titleKey: "why.6.title", textKey: "why.6.text" },
 ];
 
 const WhyIParkUSection = () => {
+  const { t } = useI18n();
+
   return (
     <section className="bg-background px-8 py-20 md:px-16 lg:px-24">
-      <h2 className="mb-16 text-center text-2xl font-bold md:text-4xl">
-        Почему iParkU?
-      </h2>
+      <h2 className="mb-16 text-center text-2xl font-bold md:text-4xl">{t("why.title")}</h2>
 
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
         {benefits.map((benefit, index) => (
@@ -49,10 +28,8 @@ const WhyIParkUSection = () => {
             <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary">
               <benefit.icon className="h-7 w-7 text-primary" />
             </div>
-            <h3 className="mb-3 text-lg font-bold">{benefit.title}</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              {benefit.description}
-            </p>
+            <h3 className="mb-3 text-lg font-bold">{t(benefit.titleKey)}</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">{t(benefit.textKey)}</p>
           </div>
         ))}
       </div>

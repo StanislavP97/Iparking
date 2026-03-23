@@ -1,3 +1,5 @@
+import { useI18n } from "@/lib/i18n";
+
 const mediaLogos = [
   { name: "BFM", url: "https://www.bfm.ru/news/472278", imgUrl: "https://iparku.info/images/main_logo.png" },
   { name: "Вести FM", url: "https://radiovesti.ru/brand/61178/episode/2538604/", imgUrl: "https://iparku.info/images/vestifmlogo_white.svg" },
@@ -8,11 +10,11 @@ const mediaLogos = [
 ];
 
 const MediaSection = () => {
+  const { t } = useI18n();
+
   return (
     <section className="bg-background px-8 py-20 md:px-16 lg:px-24">
-      <h2 className="mb-12 text-center text-2xl font-bold md:text-4xl">
-        СМИ о нас
-      </h2>
+      <h2 className="mb-12 text-center text-2xl font-bold md:text-4xl">{t("media.title")}</h2>
 
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-8 md:gap-12">
         {mediaLogos.map((media) => (
