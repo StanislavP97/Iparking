@@ -1,191 +1,186 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 
-export type Language = "ru" | "en" | "de";
+export type Language = "ru" | "en" | "ro";
 
 const translations = {
-  // Navigation
-  "nav.contacts": { ru: "Контакты", en: "Contact us", de: "Kontaktiere uns" },
-  "nav.help": { ru: "Помощь", en: "Help", de: "Help" },
+  "nav.contacts": { ru: "Контакты", en: "Contact us", ro: "Contacte" },
+  "nav.help": { ru: "Помощь", en: "Help", ro: "Ajutor" },
 
-  // Hero promo bubble
   "hero.promo.line1": {
     ru: "Установите приложение\nи получите",
     en: "Download the app and get",
-    de: "Laden Sie die App herunter\nund erhalten Sie",
+    ro: "Descarcă aplicația\nși primește",
   },
-  "hero.promo.count": { ru: "2", en: "2", de: "2" },
+  "hero.promo.count": { ru: "2", en: "2", ro: "2" },
   "hero.promo.line2": {
     ru: "первые парковки",
     en: "free",
-    de: "kostenlose",
+    ro: "parcări",
   },
-  "hero.promo.line3": { ru: "бесплатно!", en: "parkings!", de: "Parkplätze!" },
+  "hero.promo.line3": { ru: "бесплатно!", en: "parkings!", ro: "gratuite!" },
 
-  // Hero headline
   "hero.headline": {
     ru: "Паркшеринг!\nПомогая с парковкой,\nполучай кэшбек.",
     en: "Parksharing\n- a new way of parking!",
-    de: "Parksharing\n- die neue Art zu parken!",
+    ro: "Parksharing\n- un nou mod de parcare!",
   },
 
-  // App store
   "hero.download": {
     ru: "Скачать приложение:",
     en: "Available on:",
-    de: "Verfügbar auf:",
+    ro: "Disponibil pe:",
   },
   "store.google.label": {
     ru: "ДОСТУПНО В",
     en: "GET IT ON",
-    de: "JETZT BEI",
+    ro: "DISPONIBIL PE",
   },
-  "store.google.name": { ru: "Google Play", en: "Google Play", de: "Google Play" },
+  "store.google.name": { ru: "Google Play", en: "Google Play", ro: "Google Play" },
   "store.apple.label": {
     ru: "Доступно в",
     en: "Download on the",
-    de: "Laden im",
+    ro: "Descarcă din",
   },
-  "store.apple.name": { ru: "App Store", en: "App Store", de: "App Store" },
+  "store.apple.name": { ru: "App Store", en: "App Store", ro: "App Store" },
 
-  // How it works
   "how.subtitle": {
     ru: "Ты указываешь куда тебе нужно ехать и просто начинаешь движение",
     en: "Indicate your destination and go",
-    de: "Du gibst an wo Du hinfahren/parken möchtest und fährst einfach los",
+    ro: "Indică destinația și pornește la drum",
   },
   "how.title": {
     ru: "Паркшеринг: как это работает?",
     en: "Parksharing: How does it work?",
-    de: "Parksharing: wie funktioniert es?",
+    ro: "Parksharing: cum funcționează?",
   },
   "how.find.step1": {
     ru: "Ты указываешь куда тебе нужно ехать и просто начинаешь движение",
     en: "Indicate your destination and go",
-    de: "Du gibst an wo Du hinfahren/parken möchtest und fährst einfach los",
+    ro: "Indică destinația și pornește la drum",
   },
   "how.find.step2": {
     ru: "Мы ищем того, кто готов освободить тебе место, когда ты подъедешь",
     en: "The app finds a car that's ready to leave and share a parking space near your destination",
-    de: "Die App sucht jemanden für Dich der Dir seinen Parkplatz in Deiner Zielregion geben möchte",
+    ro: "Aplicația găsește o mașină care este gata să plece și să elibereze un loc de parcare lângă destinația ta",
   },
   "how.find.step3": {
     ru: "Ты подъезжаешь и тебе освобождают место за вознаграждение",
     en: "You arrive and get the space by giving a small reward to that parked driver",
-    de: "Du fährst zu Deinem Ziel und bekommst den Parkplatz gegen eine kleine Gebühr",
+    ro: "Ajungi și primești locul oferind o mică recompensă șoferului parcat",
   },
-  "how.or": { ru: "или", en: "OR", de: "ODER" },
+  "how.or": { ru: "или", en: "OR", ro: "SAU" },
   "how.leave.step1": {
     ru: "Тебе скоро уезжать и ты можешь освободить своё парковочное место",
     en: "You're about to leave and are ready to share your parking space",
-    de: "Du willst bald losfahren und möchtest Deinen Parkplatz zur Verfügung stellen",
+    ro: "Ești pe punctul de a pleca și ești gata să împarți locul tău de parcare",
   },
   "how.leave.step2": {
     ru: "Мы находим желающего припарковаться на твоём месте",
     en: "We find a driver who needs your parking space",
-    de: "Wir finden jemanden für Dich der Deinen Parkplatz nutzen will",
+    ro: "Găsim un șofer care are nevoie de locul tău de parcare",
   },
   "how.leave.step3": {
     ru: "Ты освобождаешь место в момент, когда желающий подъехал и получаешь за это вознаграждение",
     en: "When that driver arrives, you depart and get a reward",
-    de: "Du verlässt Deinen Parkplatz wenn die Person die ihn haben möchte ankommt und dafür bekommst Du eine Prämie",
+    ro: "Când șoferul ajunge, tu pleci și primești o recompensă",
   },
 
-  // CTA
   "cta.title": {
     ru: "Первый паркшеринг.",
     en: "1st parksharing.",
-    de: "Die erste parksharing App.",
+    ro: "Prima aplicație de parksharing.",
   },
   "cta.subtitle": {
     ru: "Парковка в 3 клика!",
     en: "Park in 3 clicks!",
-    de: "Parken mit 3 Clicks!",
+    ro: "Parcarea în 3 clickuri!",
   },
   "cta.text": {
-    ru: "Скачай приложение iParkU и парковаться станет проще и быстрее",
-    en: "Download the iParkU app, and let parking become easier and quicker",
-    de: "Laden Sie die iParkU App herunter und machen Sie das Parken einfacher und schneller.",
+    ru: "Скачай приложение и парковаться станет проще и быстрее",
+    en: "Download the app, and let parking become easier and quicker",
+    ro: "Descarcă aplicația și parcarea va deveni mai ușoară și mai rapidă",
   },
 
-  // Why iParkU
-  "why.title": { ru: "Почему iParkU?", en: "Why iParkU?", de: "Warum iParkU?" },
-  "why.1.title": { ru: "Легко и удобно", en: "Easy and convenient", de: "Leicht und unkompliziert" },
+  "why.title": { ru: "Почему выбрать нас?", en: "Why choose us?", ro: "De ce să ne alegi?" },
+  "why.1.title": { ru: "Легко и удобно", en: "Easy and convenient", ro: "Ușor și comod" },
   "why.1.text": {
     ru: "Получить место можно всего за 3 клика. Приложение ищет того, кто готов поменяться с тобой местами в нужном районе.",
-    en: "Find a parking space in just 3 clicks. iParkU looks for a driver who is ready to share a parking space near your destination.",
-    de: "Du bekommst einen Parkplatz mit nur 3 Clicks. iParkU sucht jemanden der bereit ist Dir seinen Parkplatz in Deiner gewünschten Zielregion zu geben.",
+    en: "Find a parking space in just 3 clicks. The app looks for a driver who is ready to share a parking space near your destination.",
+    ro: "Găsește un loc de parcare în doar 3 clickuri. Aplicația caută un șofer care este gata să împărtășească un loc de parcare lângă destinația ta.",
   },
-  "why.2.title": { ru: "Возможность заработать", en: "Earn money", de: "Eine Gelegenheit Geld zu verdienen" },
+  "why.2.title": { ru: "Возможность заработать", en: "Earn money", ro: "Câștigă bani" },
   "why.2.text": {
     ru: "Чем чаще ты пользуешься приложением и освобождаешь места, тем больше зарабатываешь.",
     en: "The more you use the app and offer your parking space, the more you earn.",
-    de: "Je öfter Du die App nutzt und Deinen Parkplatz anbietest umso mehr Geld verdienst Du.",
+    ro: "Cu cât folosești mai mult aplicația și oferi locul tău de parcare, cu atât câștigi mai mult.",
   },
-  "why.3.title": { ru: "Экономия денег", en: "Save money", de: "Geld sparen" },
+  "why.3.title": { ru: "Экономия денег", en: "Save money", ro: "Economisește bani" },
   "why.3.text": {
     ru: "Тебе больше не надо тратить бензин, делая несколько кругов по району. А также оставлять машину на местах, где ее смогут эвакуировать или оштрафовать.",
-    en: "You'll no longer waste gas driving in circles looking for a space. Also, iParkU helps to avoid potential parking fines.",
-    de: "Du sparst Kraftstoff weil Du nich mehr auf der Suche nach einem Parkplatz durch die Gegend fährst. Und Du vermeidest Gebühren für falsches Parken wenn Du iParkU verwendest.",
+    en: "You'll no longer waste gas driving in circles looking for a space. Also helps to avoid potential parking fines.",
+    ro: "Nu vei mai irosi combustibil conducând în cercuri căutând un loc. De asemenea, te ajută să eviți eventualele amenzi de parcare.",
   },
-  "why.4.title": { ru: "Экономия времени", en: "Save time", de: "Zeit sparen" },
+  "why.4.title": { ru: "Экономия времени", en: "Save time", ro: "Economisește timp" },
   "why.4.text": {
     ru: "Теперь не надо долго искать парковку — достаточно связаться с помощью приложения с тем, кто уезжает.",
-    en: "Stop wasting time on finding a parking space. iParkU finds a car that will soon leave.",
-    de: "Du verschwendest keine Zeit mehr einen Parkplatz zu suchen. Öffne einfach die App und finde jemanden der seinen Parkplatz verlässt.",
+    en: "Stop wasting time on finding a parking space. The app finds a car that will soon leave.",
+    ro: "Nu mai pierzi timp căutând un loc de parcare. Aplicația găsește o mașină care va pleca în curând.",
   },
-  "why.5.title": { ru: "Забота об окружающей среде", en: "Green power", de: "Schutz der Umwelt" },
+  "why.5.title": { ru: "Забота об окружающей среде", en: "Green power", ro: "Protejarea mediului" },
   "why.5.text": {
-    ru: "Бережёшь бензин — бережёшь природу. И мы тебе в этом поможем с помощью приложения iParkU.",
-    en: "By making city parking quick and efficient, iParkU helps to cut car emissions and pollution.",
-    de: "Du sparst Kraftstoff und schonst damit die Umwelt. iParkU hilft Dir dabei.",
+    ru: "Бережёшь бензин — бережёшь природу. И мы тебе в этом поможем с помощью приложения.",
+    en: "By making city parking quick and efficient, the app helps to cut car emissions and pollution.",
+    ro: "Făcând parcarea rapidă și eficientă, aplicația ajută la reducerea emisiilor și poluării.",
   },
-  "why.6.title": { ru: "Всегда хорошее настроение", en: "Be confident and assured", de: "Immer gute Laune" },
+  "why.6.title": { ru: "Всегда хорошее настроение", en: "Be confident and assured", ro: "Mereu bine dispus" },
   "why.6.text": {
     ru: "Ты не кружишь по району в поисках парковочного места, никуда не опаздываешь — ничто не испортит твое настроение!",
     en: "Knowing that a parking space awaits you means that you can relax and feel confident that you'll never be late.",
-    de: "Du wirst niemals mehr auf Parkplatzsuch durch dien Gegend irren, bist nie mehr zu spät und nichts kann Dir mehr Deine gute Laune verderben.",
+    ro: "Știind că un loc de parcare te așteaptă înseamnă că te poți relaxa și fi sigur că nu vei întârzia niciodată.",
   },
 
-  // Media
-  "media.title": { ru: "СМИ о нас", en: "Media about us", de: "Medien über uns" },
+  "media.title": { ru: "СМИ о нас", en: "Media about us", ro: "Media despre noi" },
 
-  // Footer
-  "footer.about": { ru: "О КОМПАНИИ:", en: "ABOUT US:", de: "Über uns:" },
-  "footer.download": { ru: "СКАЧАТЬ ПРИЛОЖЕНИЕ:", en: "AVAILABLE ON:", de: "Verfügbar auf:" },
-  "footer.payments": { ru: "ПЛАТЕЖНЫЕ СИСТЕМЫ:", en: "PAYMENT METHODS:", de: "Zahlungsmethoden:" },
+  "footer.about": { ru: "О КОМПАНИИ:", en: "ABOUT US:", ro: "DESPRE NOI:" },
+  "footer.download": { ru: "СКАЧАТЬ ПРИЛОЖЕНИЕ:", en: "AVAILABLE ON:", ro: "DISPONIBIL PE:" },
+  "footer.payments": { ru: "ПЛАТЕЖНЫЕ СИСТЕМЫ:", en: "PAYMENT METHODS:", ro: "METODE DE PLATĂ:" },
   "footer.license": {
     ru: "Лицензионное соглашение",
     en: "License agreement",
-    de: "Lizenzvereinbarung",
+    ro: "Acord de licență",
   },
   "footer.rules": {
     ru: "Правила пользования сервисом",
     en: "Terms of use",
-    de: "Nutzungsbedingungen",
+    ro: "Termeni de utilizare",
   },
   "footer.privacy": {
     ru: "Политика конфиденциальности",
     en: "Privacy policy",
-    de: "Datenschutz Bestimmungen",
+    ro: "Politica de confidențialitate",
   },
 
-  // Help popup
-  "help.title": { ru: "Как мы можем помочь?", en: "How can we help?", de: "Wie können wir helfen?" },
-  "help.submit": { ru: "Отправить", en: "Submit", de: "Einreichen" },
+  "help.title": { ru: "Как мы можем помочь?", en: "How can we help?", ro: "Cum vă putem ajuta?" },
+  "help.submit": { ru: "Отправить", en: "Submit", ro: "Trimite" },
   "help.success": {
     ru: "Спасибо! Ваше сообщение отправлено, свяжемся с вами в ближайшее время.",
     en: "Thank you! Your message has been sent.",
-    de: "Danke! Daten gesendet",
+    ro: "Mulțumim! Mesajul dvs. a fost trimis.",
   },
-  "help.name": { ru: "Имя", en: "Name", de: "Name" },
-  "help.email": { ru: "Email", en: "Email", de: "Email" },
-  "help.phone": { ru: "Телефон", en: "Phone", de: "Telefon" },
-  "help.message": { ru: "Сообщение", en: "Message", de: "Nachricht" },
+  "help.name": { ru: "Имя", en: "Name", ro: "Nume" },
+  "help.email": { ru: "Email", en: "Email", ro: "Email" },
+  "help.phone": { ru: "Телефон", en: "Phone", ro: "Telefon" },
+  "help.message": { ru: "Сообщение", en: "Message", ro: "Mesaj" },
   "help.consent": {
     ru: "Нажимая кнопку Отправить вы соглашаетесь с политикой конфиденциальности",
     en: "By clicking Submit you agree to the privacy policy",
-    de: "Mit dem Klick auf Einreichen stimmen Sie der Datenschutzrichtlinie zu",
+    ro: "Prin apăsarea butonului Trimite sunteți de acord cu politica de confidențialitate",
   },
+
+  "legal.privacy.title": { ru: "Политика конфиденциальности", en: "Privacy Policy", ro: "Politica de confidențialitate" },
+  "legal.terms.title": { ru: "Правила пользования сервисом", en: "Terms & Conditions", ro: "Termeni și condiții" },
+  "legal.license.title": { ru: "Лицензионное соглашение", en: "License Agreement", ro: "Acord de licență" },
+  "legal.back": { ru: "← Назад", en: "← Back", ro: "← Înapoi" },
 } as const;
 
 export type TranslationKey = keyof typeof translations;

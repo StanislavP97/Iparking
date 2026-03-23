@@ -12,7 +12,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-background">
-      {/* Background image - right side */}
       <div className="absolute inset-0">
         <div className="absolute right-0 top-0 h-full w-full md:w-[65%]">
           <img
@@ -24,10 +23,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="relative z-20 flex items-center justify-end gap-6 px-8 py-6 md:px-16">
         <a
-          href="mailto:support@thewebproduction.com"
+          href="#contact"
           className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
         >
           {t("nav.contacts")}
@@ -40,7 +38,7 @@ const HeroSection = () => {
           {t("nav.help")}
         </button>
         <div className="flex items-center gap-1 text-sm text-foreground/60">
-          {(["en", "ru", "de"] as Language[]).map((l, i) => (
+          {(["en", "ru", "ro"] as Language[]).map((l, i) => (
             <span key={l} className="flex items-center gap-1">
               {i > 0 && <span>/</span>}
               <button
@@ -49,14 +47,13 @@ const HeroSection = () => {
                   lang === l ? "font-semibold text-foreground" : "text-foreground/60"
                 }`}
               >
-                {l === "en" ? "En" : l === "ru" ? "Ru" : "De"}
+                {l === "en" ? "En" : l === "ru" ? "Ru" : "Ro"}
               </button>
             </span>
           ))}
         </div>
       </nav>
 
-      {/* Promo bubble */}
       <div className="absolute left-1/2 top-20 z-20 -translate-x-1/2 md:left-[40%]">
         <div className="rounded-[2rem] border-2 border-dashed border-foreground/40 px-8 py-5 text-center">
           {t("hero.promo.line1").split("\n").map((line, i) => (
@@ -70,16 +67,13 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Main content */}
       <div className="relative z-10 flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
-        {/* Logo */}
         <div className="mb-6">
           <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
             iPark<span className="text-primary">U</span>
           </h2>
         </div>
 
-        {/* Headline */}
         <h1
           className="mb-2 text-3xl font-bold leading-tight md:text-5xl lg:text-[3.2rem]"
           style={{ lineHeight: 1.15 }}
@@ -92,13 +86,10 @@ const HeroSection = () => {
           ))}
         </h1>
 
-        {/* App store buttons */}
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <span className="text-sm text-foreground/70">{t("hero.download")}</span>
           <a
-            href="https://iparku.onelink.me/QmfW/745f913a"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
             className="flex h-12 items-center gap-2 rounded-lg border border-foreground/30 px-5 transition-all hover:border-primary"
           >
             <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current text-foreground" xmlns="http://www.w3.org/2000/svg">
@@ -114,9 +105,7 @@ const HeroSection = () => {
             </div>
           </a>
           <a
-            href="https://iparku.onelink.me/UwDo/d272b729"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
             className="flex h-12 items-center gap-2 rounded-lg border border-foreground/30 px-5 transition-all hover:border-primary"
           >
             <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current text-foreground" xmlns="http://www.w3.org/2000/svg">
