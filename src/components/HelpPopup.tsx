@@ -131,7 +131,7 @@ export function HelpPopup({ open, onOpenChange }: HelpPopupProps) {
 
           <div className="flex justify-center my-2">
             <Turnstile
-              siteKey="0x4AAAAAACy9873FszIdbu4n"
+              siteKey="0x4AAAAAACzBzHK7j-ozt3LR"
               onSuccess={(token) => setCaptchaToken(token)}
               onExpire={() => setCaptchaToken("")}
             />
