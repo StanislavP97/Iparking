@@ -25,7 +25,7 @@ const HeroSection = () => {
 
       <nav className="relative z-20 flex items-center justify-end gap-6 px-8 py-6 md:px-16">
         <a
-          href="#contact"
+          href="#contacts"
           className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
         >
           {t("nav.contacts")}
@@ -66,7 +66,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl m-auto flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
+     <div className="relative z-10 mt-20 max-w-7xl m-auto flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
         <div className="mb-6">
           <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
             Parkan<span className="text-primary">E</span>
@@ -91,7 +91,7 @@ const HeroSection = () => {
               {t("hero.download")}
             </span>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap justify-center items-center gap-2">
               {[
                 {
                   id: "apple",

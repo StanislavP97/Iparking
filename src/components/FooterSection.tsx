@@ -8,7 +8,7 @@ const FooterSection = () => {
   const { t } = useI18n();
 
   return (
-    <footer className="border-t border-border bg-background px-8 py-12 md:px-16 lg:px-24">
+    <footer id="contacts" className="border-t border-border bg-background px-8 py-12 md:px-16 lg:px-24">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-start md:justify-between">
         <div>
           <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -27,7 +27,7 @@ const FooterSection = () => {
           <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-center text-muted-foreground">
             {t("footer.download")}
           </h4>
-          <div className="flex items-center max-sm:justify-center gap-3">
+          <div className="flex flex-wrap justify-center items-center gap-2">
             {[
               {
                 id: "apple",
@@ -76,26 +76,6 @@ const FooterSection = () => {
         </div>
 
         <div>
-          <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {t("footer.payments")}
-          </h4>
-          <div className="mb-4 flex gap-2 justify-center md:justify-start">
-            <div className="flex h-8 w-14 items-center justify-center rounded-sm bg-white shadow-sm border border-gray-100">
-              <img src={visa} alt="" className="max-h-full object-contain" />
-            </div>
-
-            <div className="flex h-8 w-14 items-center justify-center rounded-sm bg-white shadow-sm border border-gray-100">
-              <img src={matserCard} alt="" className="max-h-full object-contain" />
-            </div>
-
-            <div className="flex h-8 w-14 items-center justify-center rounded-sm bg-white shadow-sm border border-gray-100">
-              <svg viewBox="0 0 45 14" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-                <path fill="#00A1D4" d="M4.6 0c-2.5 0-4.6 2.1-4.6 4.6v9.4h4.1V4.6c0-0.3 0.2-0.5 0.5-0.5h0.1c0.3 0 0.5 0.2 0.5 0.5v9.4h4.1V4.6c0-2.5-2.1-4.6-4.7-4.6z" />
-                <path fill="#0055A5" d="M15.5 0h-4.1v14h4.1V0zM31.2 0h-7.6v14h4.1V8.5h3.5L34.7 14h4.5L35.6 7.8c1.8-0.6 3.1-2.3 3.1-4.3 0-2.4-1.9-3.5-7.5-3.5zm-3.5 5h3.5c0.4 0 0.8 0.4 0.8 0.8 0 0.4-0.4 0.8-0.8 0.8h-3.5V5z" />
-                <path fill="#84BD00" d="M44.4 0h-4.1v14h4.1V0z" />
-              </svg>
-            </div>
-          </div>
           <div className="flex flex-col gap-1">
             <Link to="/license" className="text-xs text-muted-foreground transition-colors hover:text-primary">
               {t("footer.license")}
