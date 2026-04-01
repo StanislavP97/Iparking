@@ -53,7 +53,7 @@ const HeroSection = () => {
         </div>
       </nav>
 
-      <div className="absolute left-1/2 xl:top-[250px] z-20 -translate-x-1/2 md:left-[40%]">
+      <div className="absolute left-1/2 xl:top-[230px] z-20 -translate-x-1/2 md:left-[40%]">
         <div className="rounded-[2rem] border-2 border-dashed border-foreground/40 px-8 py-5 max-sm:px-2 max-sm:py-2 text-center">
           {t("hero.promo.line1").split("\n").map((line, i) => (
             <p key={i} className="text-sm text-foreground/80">{line}</p>
