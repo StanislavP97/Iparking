@@ -1,8 +1,7 @@
 import HeroSection from "@/components/HeroSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import CtaSection from "@/components/CtaSection";
-import WhyIparkingSection from "@/components/WhyIparkingSection";
-import MediaSection from "@/components/MediaSection";
+import WhyParkaneSection from "@/components/WhyParkaneSection";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
@@ -11,8 +10,7 @@ const Index = () => {
       <HeroSection />
       <HowItWorksSection />
       <CtaSection />
-      <WhyIparkingSection />
-      <MediaSection />
+      <WhyParkaneSection />
       <FooterSection />
     </div>
   );

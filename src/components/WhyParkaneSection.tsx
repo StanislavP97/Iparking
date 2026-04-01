@@ -12,7 +12,7 @@ const benefits: { icon: LucideIcon; titleKey: TranslationKey; textKey: Translati
   { icon: Smile, titleKey: "why.6.title", textKey: "why.6.text" },
 ];
 
-const WhyIparkingSection = () => {
+const WhyParkaneSection = () => {
   const { t } = useI18n();
 
   return (
@@ -24,7 +24,7 @@ const WhyIparkingSection = () => {
             key={index}
             className="group rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(76,217,100,0.08)]"
           >
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary">
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-white border">
               <benefit.icon className="h-7 w-7 text-primary" />
             </div>
             <h3 className="mb-3 text-black text-lg font-bold">{t(benefit.titleKey)}</h3>
@@ -36,4 +36,4 @@ const WhyIparkingSection = () => {
   );
 };
 
-export default WhyIparkingSection;
+export default WhyParkaneSection;

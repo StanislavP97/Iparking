@@ -20,46 +20,58 @@ const FooterSection = () => {
           >
             {t("nav.contacts")}
           </a>
-          <p className="mt-4 text-xs text-muted-foreground">© 2025 Iparking Technology</p>
+          <p className="mt-4 text-xs text-muted-foreground">© 2025 Parkane Technology</p>
         </div>
 
         <div>
           <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-center text-muted-foreground">
             {t("footer.download")}
           </h4>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#"
-              className="flex h-12 items-center gap-2 rounded-lg border border-foreground/30 px-5 transition-all hover:border-primary"
-            >
-              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current text-foreground" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.38l2.545 1.474c.5.29.5 1.108 0 1.398l-2.545 1.474-2.542-2.673 2.542-2.673zM5.864 3.465l10.937 6.333-2.302 2.302-8.635-8.635z" />
-              </svg>
-              <div className="text-left">
-                <div className="text-[10px] uppercase leading-none text-foreground/60">
-                  {t("store.google.label")}
+          <div className="flex items-center max-sm:justify-center gap-3">
+            {[
+              {
+                id: "apple",
+                label: t("store.apple.label"),
+                name: t("store.apple.name"),
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current" viewBox="0 0 22.773 22.773">
+                    <path d="M15.769 0h.162c.13 1.606-.483 2.806-1.228 3.675-.731.863-1.732 1.7-3.351 1.573-.108-1.583.506-2.694 1.25-3.561C13.292.879 14.557.16 15.769 0zm4.901 16.716v.045c-.455 1.378-1.104 2.559-1.896 3.655-.723.995-1.609 2.334-3.191 2.334-1.367 0-2.275-.879-3.676-.903-1.482-.024-2.297.735-3.652.926h-.462c-.995-.144-1.798-.932-2.383-1.642-1.725-2.098-3.058-4.808-3.306-8.276v-1.019c.105-2.482 1.311-4.5 2.914-5.478.846-.52 2.009-.963 3.304-.765.555.086 1.122.276 1.619.464.471.181 1.06.502 1.618.485.378-.011.754-.208 1.135-.347 1.116-.403 2.21-.865 3.652-.648 1.733.262 2.963 1.032 3.723 2.22-1.466.933-2.625 2.339-2.427 4.74.176 2.181 1.444 3.457 3.028 4.209z" />
+                  </svg>
+                ),
+              },
+              {
+                id: "google",
+                label: t("store.google.label"),
+                name: t("store.google.name"),
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 64 64">
+                    <path fill="#57cef3" d="M7 3v58l33-29z" />
+                    <path fill="#fff200" d="m36 32 8-10 15 10-15 10z" />
+                    <path fill="#48ff48" d="M36 32 7 3h4l34 20z" />
+                    <path fill="#ff6c58" d="M36 32 7 61h4l34-20z" />
+                  </svg>
+                ),
+              },
+            ].map((store) => (
+              <button
+                key={store.id}
+                type="button"
+                className="group flex items-center h-12 gap-3 pl-5 pr-6 rounded-lg border border-white/10 bg-black text-white transition-all duration-300 hover:bg-zinc-900 active:scale-95"
+              >
+                <div className="transition-transform duration-300 group-hover:scale-110">
+                  {store.icon}
                 </div>
-                <div className="text-sm font-semibold text-foreground">
-                  {t("store.google.name")}
+
+                <div className="text-left font-sans relative z-10">
+                  <p className="text-[10px] uppercase tracking-[0.1em] text-white/50 leading-none">
+                    {store.label}
+                  </p>
+                  <p className="text-base font-semibold tracking-tight leading-tight mt-0.5">
+                    {store.name}
+                  </p>
                 </div>
-              </div>
-            </a>
-            <a
-              href="#"
-              className="flex h-12 items-center gap-2 rounded-lg border border-foreground/30 px-5 transition-all hover:border-primary"
-            >
-              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current text-foreground" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              <div className="text-left">
-                <div className="text-[10px] uppercase leading-none text-foreground/60">
-                  {t("store.apple.label")}
-                </div>
-                <div className="text-sm font-semibold text-foreground">
-                  {t("store.apple.name")}
-                </div>
-              </div>
-            </a>
+              </button>
+            ))}
           </div>
         </div>
 
