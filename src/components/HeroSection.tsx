@@ -3,12 +3,50 @@ import type { Language } from "@/lib/i18n";
 import heroBg from "@/assets/hero-bg-second.jpg";
 import { useState } from "react";
 import { HelpPopup } from "@/components/HelpPopup";
+import { motion } from "framer-motion";
+
+const spring = { type: "spring" as const, stiffness: 120, damping: 20 };
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: spring },
+};
+
+const storeHoverEffects = {
+  apple: {
+    scale: 1.05,
+    boxShadow: "0px 0px 20px 0px rgba(0, 122, 255, 0.4)",
+  },
+  google: {
+    scale: 1.05,
+    boxShadow: "0px 0px 20px 0px rgba(52, 168, 83, 0.4)",
+  },
+} as const;
+
+function emphasizeWord(text: string, word: string, className: string) {
+  const idx = text.toLowerCase().indexOf(word.toLowerCase());
+  if (idx === -1) return text;
+  const before = text.slice(0, idx);
+  const match = text.slice(idx, idx + word.length);
+  const after = text.slice(idx + word.length);
+  return (
+    <>
+      {before}
+      <span className={className}>{match}</span>
+      {after}
+    </>
+  );
+}
 
 const HeroSection = () => {
   const { t, lang, setLang } = useI18n();
   const [helpOpen, setHelpOpen] = useState(false);
 
   const headlineLines = t("hero.headline").split("\n");
+  const promoLine1 = t("hero.promo.line1").replace(/\s*\n\s*/g, " ").trim();
+  const promoCount = t("hero.promo.count");
+  const promoLine2 = t("hero.promo.line2");
+  const promoLine3 = t("hero.promo.line3");
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-background">
@@ -24,58 +62,71 @@ const HeroSection = () => {
       </div>
 
       <nav className="relative z-20 flex items-center justify-end gap-6 px-8 py-6 md:px-16">
-        <a
+        <motion.a
           href="#contacts"
           className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+          whileHover={{ scale: 1.03, opacity: 0.92 }}
+          transition={spring}
         >
           {t("nav.contacts")}
-        </a>
-        <button
+        </motion.a>
+        <motion.button
           onClick={() => setHelpOpen(true)}
           className="flex items-center gap-2 rounded-full border border-foreground/30 px-5 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+          whileHover={{ scale: 1.03, opacity: 0.92 }}
+          whileTap={{ scale: 0.98 }}
+          transition={spring}
         >
           <span className="inline-block h-2 w-2 rounded-full bg-primary" />
           {t("nav.help")}
-        </button>
+        </motion.button>
         <div className="flex items-center gap-1 text-sm text-foreground/60">
           {(["en", "ru", "ro"] as Language[]).map((l, i) => (
             <span key={l} className="flex items-center gap-1">
               {i > 0 && <span>/</span>}
-              <button
+              <motion.button
                 onClick={() => setLang(l)}
                 className={`transition-colors hover:text-primary ${lang === l ? "font-semibold text-foreground" : "text-foreground/60"
                   }`}
+                whileHover={{ scale: 1.03, opacity: 0.92 }}
+                whileTap={{ scale: 0.98 }}
+                transition={spring}
               >
                 {l === "en" ? "En" : l === "ru" ? "Ru" : "Ro"}
-              </button>
+              </motion.button>
             </span>
           ))}
         </div>
       </nav>
 
-      <div className="absolute left-1/2 xl:top-[230px] z-20 -translate-x-1/2 md:left-[40%]">
-        <div className="rounded-[2rem] border-2 border-dashed border-foreground/40 px-5 py-5 max-sm:px-2 max-sm:py-2 text-center">
-          {t("hero.promo.line1").split("\n").map((line, i) => (
-            <p key={i} className="text-sm text-foreground/80">{line}</p>
-          ))}
-          <p className="text-lg font-bold text-foreground">
-            <span className="text-primary">{t("hero.promo.count")}</span>{" "}
-            {t("hero.promo.line2")}
+      <div className="absolute left-1/2 top-24 z-20 -translate-x-1/2 max-w-[250px] sm:top-auto xl:top-[230px] md:left-[40%]">
+        <div className="rounded-[2rem] border-2 border-dashed border-foreground/40 px-5 py-5 text-center max-sm:bg-neutral-900/60 max-sm:backdrop-blur-sm max-sm:px-3 max-sm:py-3">
+          <p className="text-xs leading-snug text-foreground/90 sm:text-sm sm:leading-relaxed">
+            <span className="font-medium">{promoLine1} </span>
+            <span className="font-bold text-primary">{promoCount}</span>{" "}
+            <span className="font-bold text-foreground">
+              {emphasizeWord(promoLine2, "парковки", "font-bold text-foreground underline decoration-primary/50 underline-offset-4")}
+            </span>{" "}
+            <span className="font-bold text-primary">
+              {emphasizeWord(promoLine3, "бесплатно!", "font-extrabold text-primary drop-shadow-[0_0_10px_hsl(var(--primary)/0.35)]")}
+            </span>
           </p>
-          <p className="font-bold text-primary">{t("hero.promo.line3")}</p>
         </div>
       </div>
 
-     <div className="relative z-10 mt-20 max-w-7xl m-auto flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
+      <div className="relative z-10 mt-20 max-w-7xl m-auto flex min-h-[calc(100vh-80px)] flex-col justify-center px-8 md:px-16 lg:px-24">
         <div className="mb-6">
           <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
             Parkan<span className="text-primary">E</span>
           </h2>
         </div>
 
-        <h1
+        <motion.h1
           className="mb-2 text-3xl font-bold leading-tight md:text-5xl lg:text-[3.2rem]"
           style={{ lineHeight: 1.15 }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
         >
           {headlineLines.map((line, i) => (
             <span key={i}>
@@ -83,14 +134,19 @@ const HeroSection = () => {
               {i < headlineLines.length - 1 && <br />}
             </span>
           ))}
-        </h1>
+        </motion.h1>
 
         <div className="mt-10 flex flex-col items-center gap-6 md:flex-row md:items-start">
           <div className="mt-8 flex flex-col md:flex-row items-center gap-6">
-            <span className="text-[13px] font-medium tracking-widest uppercase text-white/40">
+            <motion.p
+              className="text-sm font-medium text-foreground/70 md:text-base"
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              transition={{ ...spring, delay: 0.08 }}
+            >
               {t("hero.download")}
-            </span>
-
+            </motion.p>
             <div className="flex flex-wrap justify-center items-center gap-2">
               {[
                 {
@@ -117,24 +173,27 @@ const HeroSection = () => {
                   ),
                 },
               ].map((store) => (
-                <button
+                <motion.button
                   key={store.id}
                   type="button"
-                  className="group flex items-center h-12 gap-3 pl-5 pr-6 rounded-lg border border-white/10 bg-black text-white transition-all duration-300 hover:bg-zinc-900 active:scale-95"
+                  className="group relative flex h-14 min-w-[198px] items-center gap-3 rounded-xl border-[0.5px] border-white/30 bg-gradient-to-b from-white/[0.22] via-black/55 to-black/75 px-6 text-white backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.26),inset_0_-8px_14px_rgba(0,0,0,0.24),0_14px_32px_rgba(0,0,0,0.40)] transition-all duration-200 active:scale-95"
+                  whileHover={storeHoverEffects[store.id]}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ ...spring, stiffness: 190, damping: 22 }}
                 >
-                  <div className="transition-transform duration-300 group-hover:scale-110">
+                  <div className="flex h-6 w-6 items-center justify-center transition-transform duration-200 group-hover:scale-105">
                     {store.icon}
                   </div>
 
-                  <div className="text-left font-sans relative z-10">
-                    <p className="text-[10px] uppercase tracking-[0.1em] text-white/50 leading-none">
+                  <div className="relative z-10 text-left font-sans">
+                    <p className="text-[10px] uppercase tracking-[0.11em] leading-none text-white/70">
                       {store.label}
                     </p>
-                    <p className="text-base font-semibold tracking-tight leading-tight mt-0.5">
+                    <p className="mt-0.5 text-[17px] font-bold leading-tight tracking-tight text-white">
                       {store.name}
                     </p>
                   </div>
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>

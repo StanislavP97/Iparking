@@ -1,8 +1,20 @@
 import { useI18n } from "@/lib/i18n";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import visa from "@/assets/visa-card.png"
 import matserCard from "@/assets/master-card.jpg"
 
+const spring = { type: "spring" as const, stiffness: 120, damping: 20 };
+const storeHoverEffects = {
+  apple: {
+    scale: 1.05,
+    boxShadow: "0px 0px 20px 0px rgba(0, 122, 255, 0.4)",
+  },
+  google: {
+    scale: 1.05,
+    boxShadow: "0px 0px 20px 0px rgba(52, 168, 83, 0.4)",
+  },
+} as const;
 
 const FooterSection = () => {
   const { t } = useI18n();
@@ -53,24 +65,27 @@ const FooterSection = () => {
                 ),
               },
             ].map((store) => (
-              <button
+              <motion.button
                 key={store.id}
                 type="button"
-                className="group flex items-center h-12 gap-3 pl-5 pr-6 rounded-lg border border-white/10 bg-black text-white transition-all duration-300 hover:bg-zinc-900 active:scale-95"
+                className="group relative flex h-14 min-w-[198px] items-center gap-3 rounded-xl border-[0.5px] border-white/30 bg-gradient-to-b from-white/[0.22] via-black/55 to-black/75 px-6 text-white backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.26),inset_0_-8px_14px_rgba(0,0,0,0.24),0_14px_32px_rgba(0,0,0,0.40)] transition-all duration-200 active:scale-95"
+                whileHover={storeHoverEffects[store.id]}
+                whileTap={{ scale: 0.98 }}
+                transition={{ ...spring, stiffness: 190, damping: 22 }}
               >
-                <div className="transition-transform duration-300 group-hover:scale-110">
+                <div className="flex h-6 w-6 items-center justify-center transition-transform duration-200 group-hover:scale-105">
                   {store.icon}
                 </div>
 
-                <div className="text-left font-sans relative z-10">
-                  <p className="text-[10px] uppercase tracking-[0.1em] text-white/50 leading-none">
+                <div className="relative z-10 text-left font-sans">
+                  <p className="text-[10px] uppercase tracking-[0.11em] leading-none text-white/70">
                     {store.label}
                   </p>
-                  <p className="text-base font-semibold tracking-tight leading-tight mt-0.5">
+                  <p className="mt-0.5 text-[17px] font-bold leading-tight tracking-tight text-white">
                     {store.name}
                   </p>
                 </div>
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>

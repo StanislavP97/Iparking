@@ -6,6 +6,23 @@ import icon4 from '@/assets/icon_04.svg';
 import icon5 from '@/assets/icon_05.svg';
 import icon6 from '@/assets/icon_06.svg';
 import arrowSvg from '@/assets/arrow_long.svg';
+import { motion } from "framer-motion";
+
+const spring = { type: "spring" as const, stiffness: 120, damping: 20 };
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: spring },
+};
 
 const HowItWorksSection = () => {
   const { t } = useI18n();
@@ -73,18 +90,30 @@ const HowItWorksSection = () => {
           </div>
         </div>
 
-        <div className="grid gap-12 md:grid-cols-3">
+        <motion.div
+          className="grid gap-12 md:grid-cols-3"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+        >
           {[icon1, icon2, icon3].map((icon, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center">
+            <motion.div
+              key={idx}
+              className="flex flex-col items-center text-center"
+              variants={item}
+              whileHover={{ scale: 1.01 }}
+              transition={spring}
+            >
               <div className="flex h-[220px] w-full items-center justify-center">
                 <img src={icon} alt="" className="max-h-full object-contain" />
               </div>
               <p className="mt-8 max-w-[280px] text-md leading-relaxed text-black font-medium">
                 {t(`how.find.step${idx + 1}`)}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <div className="mx-auto my-20 flex max-w-xs items-center justify-center gap-4">
@@ -97,18 +126,30 @@ const HowItWorksSection = () => {
         min-[1600px]:max-w-[1400px]">
 
 
-        <div className="grid gap-12 md:grid-cols-3">
+        <motion.div
+          className="grid gap-12 md:grid-cols-3"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+        >
           {[icon4, icon5, icon6].map((icon, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center">
+            <motion.div
+              key={idx}
+              className="flex flex-col items-center text-center"
+              variants={item}
+              whileHover={{ scale: 1.01 }}
+              transition={spring}
+            >
               <div className="flex h-[220px] w-full items-center justify-center">
                 <img src={icon} alt="" className="max-h-full object-contain" />
               </div>
               <p className="mt-8 max-w-[280px] text-md leading-relaxed text-black font-medium">
                 {t(`how.leave.step${idx + 1}`)}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <div className="relative mt-16 hidden md:block h-10">
           <div className="relative grid grid-cols-3 w-full h-full">
 

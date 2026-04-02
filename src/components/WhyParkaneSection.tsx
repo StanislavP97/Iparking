@@ -2,6 +2,23 @@ import { useI18n } from "@/lib/i18n";
 import { MousePointerClick, Wallet, Fuel, Clock, Leaf, Smile } from "lucide-react";
 import type { TranslationKey } from "@/lib/i18n";
 import type { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
+
+const spring = { type: "spring" as const, stiffness: 120, damping: 20 };
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: spring },
+};
 
 const benefits: { icon: LucideIcon; titleKey: TranslationKey; textKey: TranslationKey }[] = [
   { icon: MousePointerClick, titleKey: "why.1.title", textKey: "why.1.text" },
@@ -16,23 +33,33 @@ const WhyParkaneSection = () => {
   const { t } = useI18n();
 
   return (
-    <section className="bg-white px-8 py-20 md:px-16 lg:px-24">
-      <h2 className="mb-16 text-center text-2xl text-black font-bold md:text-4xl">{t("why.title")}</h2>
-      <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {benefits.map((benefit, index) => (
-          <div
-            key={index}
-            className="group rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(76,217,100,0.08)]"
-          >
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-white border">
-              <benefit.icon className="h-7 w-7 text-primary" />
-            </div>
-            <h3 className="mb-3 text-black text-lg font-bold">{t(benefit.titleKey)}</h3>
-            <p className="text-sm text-black leading-relaxed text-muted-foreground">{t(benefit.textKey)}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+<section className="bg-white px-8 py-20 md:px-16 lg:px-24">
+  <h2 className="mb-16 text-center text-2xl text-black font-bold md:text-4xl">{t("why.title")}</h2>
+  <motion.div
+    className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3"
+    variants={container}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true, amount: 0.25 }}
+  >
+    {benefits.map((benefit, index) => (
+      <motion.div
+        key={index}
+        className="group rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(76,217,100,0.08)]"
+        variants={item}
+        whileHover={{ scale: 1.01 }}
+        transition={spring}
+      >
+        <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-white border border-border transition-all duration-300 group-hover:border-primary/40">
+          <benefit.icon className="h-7 w-7 text-primary" />
+        </div>
+        
+        <h3 className="mb-3 text-black text-lg font-bold">{t(benefit.titleKey)}</h3>
+        <p className="text-sm text-black leading-relaxed text-muted-foreground">{t(benefit.textKey)}</p>
+      </motion.div>
+    ))}
+  </motion.div>
+</section>
   );
 };
 
